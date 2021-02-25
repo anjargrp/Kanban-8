@@ -31,9 +31,37 @@ let list = [
 
 
 let toDoBox = document.getElementById("toDoBox")
-for(var i = 0; i < list.length; i++){
+for (var i = 0; i < list.length; i++) {
     let newList = document.createElement("li");
+    newList.setAttribute("status", list[i].class)
+    newList.setAttribute("draggable", true)
+    newList.setAttribute("ondragstart", "drag(event)")
     newList.innerText = list[i].list
     newList.id = i
     document.getElementById(list[i].class).appendChild(newList)
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    // console.log(ev.target)
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    if (ev.target.id === "toDoBox" || ev.target.id === "doneBox" || ev.target.id === "doingBox") {
+        let data = ev.dataTransfer.getData("text");
+        let li = document.getElementById(data)
+        li.setAttribute("status", ev.target.id)
+        ev.target.appendChild(li);
+        console.log(list[li.id])
+        list[li.id].class = ev.target.id
+        console.log(list[li.id])
+    } else {
+        alert("Drag item di bagian paling bawah list item yang tersedia ")
+    }
+
 }
