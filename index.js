@@ -90,6 +90,50 @@ function drop(ev) {
 }
 
 function updateBtn(ev) {
+    // let editButton = document.createElement('button')
+    // editButton.innerText = 'Edit'
+    // editButton.setAttribute('type', 'submit')
+    // editButton.setAttribute('value', i)
+    // editButton.setAttribute('style', 'display:block')
+    // editButton.addEventListener('click', updateButton)
+    let index = ev.target.value
+    let value = prompt("Silahkan ganti message", list[index].list)
+    list[index].list = value
+    document.getElementById("toDoBox").innerHTML = ""
+    document.getElementById("doneBox").innerHTML = ""
+    document.getElementById("doingBox").innerHTML = ""
+
+    for (var i = 0; i < list.length; i++) {
+        let div = document.createElement("div");
+        div.setAttribute("status", list[i].class)
+        div.setAttribute("draggable", true)
+        div.setAttribute("ondragstart", "drag(event)")
+        div.id = i
+
+        let editButton = document.createElement('button')
+        editButton.innerText = 'Edit'
+        editButton.setAttribute('type', 'submit')
+        editButton.setAttribute('value', i)
+        editButton.classList.add("update-btn")
+        editButton.addEventListener("click", updateBtn)
+
+        let deleteButton = document.createElement('button')
+        deleteButton.innerText = 'delete'
+        deleteButton.setAttribute('type', 'submit')
+        deleteButton.setAttribute('value', i)
+        deleteButton.classList.add("delete-btn")
+        deleteButton.addEventListener("click", deleteBtn)
+
+        let newList = document.createElement("li");
+        newList.innerText = list[i].list
+        newList.id = i
+
+        div.append(newList)
+        div.append(editButton)
+        div.append(deleteButton)
+
+        document.getElementById(list[i].class).appendChild(div)
+    }
 
 }
 
