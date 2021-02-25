@@ -1,38 +1,39 @@
-let toDo = [
-    "Challenge 1",
-    "Challenge 2"
+let list = [
+    {
+        list: "Challenge 1",
+        class: "toDoBox"
+    },
+    {
+        list: "Challenge 2",
+        class: "toDoBox"
+    },
+    {
+        list: "Challenge 3",
+        class: "doingBox"
+    },
+    {
+        list: "Challenge 4",
+        class: "doingBox"
+    },
+    {
+        list: "Challenge 5",
+        class: "toDoBox"
+    },
+    {
+        list: "Challenge 6",
+        class: "doneBox"
+    },
+    {
+        list: "Challenge 7",
+        class: "toDoBox"
+    }
 ]
 
-let doing = [
-    "Challenge 1",
-    "Challenge 2"
-]
-
-let doneToDo = [
-    "Challenge 1",
-    "Challenge 2",
-    "Challenge 1",
-    "Challenge 2"
-]
 
 let toDoBox = document.getElementById("toDoBox")
-for(var i = 0; i < toDo.length; i++){
-    let newTodo = document.createElement("li");
-    newTodo.innerText = toDo[i]
-    toDoBox.appendChild(newTodo)
+for(var i = 0; i < list.length; i++){
+    let newList = document.createElement("li");
+    newList.innerText = list[i].list
+    newList.id = i
+    document.getElementById(list[i].class).appendChild(newList)
 }
-
-let doingBox = document.getElementById("doingBox")
-for(var i = 0; i < doing.length; i++){
-    let newDoing = document.createElement("li")
-    newDoing.innerText = doing[i]
-    doingBox.appendChild(newDoing)
-}
-
-let doneBox = document.getElementById("doneBox")
-for(var i = 0; i < doneToDo.length; i++){
-    let newDone = document.createElement("li")
-    newDone.innerText = doneToDo[i]
-    doneBox.appendChild(newDone)
-}
-
