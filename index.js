@@ -57,9 +57,9 @@ function drop(ev) {
         let li = document.getElementById(data)
         li.setAttribute("status", ev.target.id)
         ev.target.appendChild(li);
-        console.log(list[li.id])
+        // console.log(list[li.id])
         list[li.id].class = ev.target.id
-        console.log(list[li.id])
+        // console.log(list[li.id])
     } else {
         alert("Drag item di bagian paling bawah list item yang tersedia ")
     }
