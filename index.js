@@ -31,9 +31,68 @@ let list = [
 
 
 let toDoBox = document.getElementById("toDoBox")
-for(var i = 0; i < list.length; i++){
+for (var i = 0; i < list.length; i++) {
+    let div = document.createElement("div");
+    div.setAttribute("status", list[i].class)
+    div.setAttribute("draggable", true)
+    div.setAttribute("ondragstart", "drag(event)")
+    div.id = i
+
+    let editButton = document.createElement('button')
+    editButton.innerText = 'Edit'
+    editButton.setAttribute('type', 'submit')
+    editButton.setAttribute('value', i)
+    editButton.classList.add("update-btn")
+    editButton.addEventListener("click", updateBtn)
+
+    let deleteButton = document.createElement('button')
+    deleteButton.innerText = 'delete'
+    deleteButton.setAttribute('type', 'submit')
+    deleteButton.setAttribute('value', i)
+    deleteButton.classList.add("delete-btn")
+    deleteButton.addEventListener("click", deleteBtn)
+
     let newList = document.createElement("li");
     newList.innerText = list[i].list
     newList.id = i
-    document.getElementById(list[i].class).appendChild(newList)
+
+    div.append(newList)
+    div.append(editButton)
+    div.append(deleteButton)
+
+    document.getElementById(list[i].class).appendChild(div)
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    // console.log(ev.target)
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    console.log(ev.target.id)
+    if (ev.target.id === "toDoBox" || ev.target.id === "doneBox" || ev.target.id === "doingBox") {
+        let data = ev.dataTransfer.getData("text");
+        let li = document.getElementById(data)
+        li.setAttribute("status", ev.target.id)
+        ev.target.appendChild(li);
+        // console.log(list[li.id])
+        list[li.id].class = ev.target.id
+        // console.log(list[li.id])
+    } else {
+        alert("Drag item di bagian paling bawah list item yang tersedia ")
+    }
+
+}
+
+function updateBtn(ev) {
+
+}
+
+function deleteBtn(ev) {
+
 }
