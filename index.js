@@ -72,7 +72,7 @@ function show(list) {
         editButton.addEventListener("click", updateBtn)
 
         let deleteButton = document.createElement('button')
-        deleteButton.innerText = 'delete'
+        deleteButton.innerText = 'Delete'
         deleteButton.setAttribute('type', 'submit')
         deleteButton.setAttribute('value', i)
         deleteButton.classList.add("delete-btn")
@@ -111,7 +111,7 @@ function drop(ev) {
         list[li.id].class = ev.target.id
         // console.log(list[li.id])
     } else {
-        alert("Drag item di bagian paling bawah list item yang tersedia ")
+        alert("Drag the item to the available workspace")
     }
 
 }
@@ -119,7 +119,7 @@ function drop(ev) {
 function updateBtn(ev) {
     ev.preventDefault()
     let index = ev.target.value
-    let value = prompt("Silahkan ganti message", list[index].list)
+    let value = prompt("Input your change here", list[index].list)
     console.log(value)
     if (value.length > 0) {
         list[index].list = value
